@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
-
+import Header from "../../components/header/header.component"
 
 const Navigation = () => {
     return (
         <div>
-            <div className='Header'>I am the Header</div>
+            <Header />
             <Outlet/>
         </div>
     )
