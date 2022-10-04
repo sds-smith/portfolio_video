@@ -1,0 +1,18 @@
+
+    .NavLink {
+        text-decoration: none;
+        color: black;
+        margin: 0px 10px;
+
+        &:hover {
+            opacity: 50%;
+        }
+
+        &:visited {
+            color: black;
+        }
+    }
+
+    .active {
+        font-weight: bold;
+    }
