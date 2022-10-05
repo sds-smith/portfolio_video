@@ -6,8 +6,9 @@ const NavBar = () => {
     return (
         <div>
             {
-                navLinksData.map((link) => (
+                navLinksData.map((link, index) => (
                     <NavLink 
+                        key={index}
                         className={(navData) => navData.isActive ? 'NavLink active' : 'NavLink'}
                         to={link.to}
                         end={link.name === 'Home'}
