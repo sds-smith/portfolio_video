@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { inputsData } from "../../assets/data/contact.data"
 import './contact.styles.scss'
 
 const encode = (data) => {
@@ -11,6 +12,13 @@ const Contact = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [message, setMessage] = useState('')
+
+    const INPUTS_DATA = {
+        FIRST_NAME : firstName,
+        LAST_NAME : lastName,
+        EMAIL : email,
+        MESSAGE : message
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -27,58 +35,42 @@ const Contact = () => {
         })
     }
     const handleChange = (event) => {
-        if (event.target.name === 'firstName') {
-            setFirstName(event.target.value)
-            console.log(firstName)
-            return
-        }
-        if (event.target.name === 'lastName') {
-            setLastName(event.target.value)
-            console.log(lastName)
-            return
-        }
-        if (event.target.name === 'email') {
-            setEmail(event.target.value)
-            console.log(email)
-            return
-        }
-        if (event.target.name === 'message') {
-            setMessage(event.target.value)
-            console.log(message)
-            return
+        switch(event.target.name) {
+            case 'firstName' :
+                setFirstName(event.target.value)
+                console.log(firstName)
+                return
+            case 'lastName' :
+                setLastName(event.target.value)
+                return
+            case 'email' :
+                setEmail(event.target.value)
+                return
+            case 'message' :
+                setMessage(event.target.value)
+                return
+            default : 
+                return
         }
     }
 
     return (
         <div className='ContactContainer' >
             <form className='form' onSubmit={handleSubmit}>
-                <input  
-                    type='text'
-                    placeholder='Your First Name'
-                    className='input'
-                    name='firstName'
-                    value={firstName}
-                    required
-                    onChange={handleChange}
-                />
-                <input  
-                    type='text'
-                    placeholder='Your Last Name'
-                    className="input"
-                    name='lastName'
-                    value={lastName}
-                    required
-                    onChange={handleChange}
-                />
-                <input  
-                    type='email'
-                    placeholder='Your email address'
-                    className='input'
-                    name='email'
-                    value={email}
-                    required
-                    onChange={handleChange}
-                />
+                {
+                    inputsData.map((input, index) => (
+                        <input  
+                            type='text'
+                            key={index}
+                            placeholder={input.placeholder}
+                            className='input'
+                            name={input.name}
+                            value={INPUTS_DATA[input.value]}
+                            required
+                            onChange={handleChange}
+                        />                        
+                    ))
+                }
                 <textarea
                     placeholder='Message'
                     className='input textarea'
